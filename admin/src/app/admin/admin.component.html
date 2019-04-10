@@ -1,0 +1,6 @@
+<p>
+  admin works!
+</p>
+<li *ngIf="authService.isLoggedIn" class="nav-item">
+  <a class="nav-link" (click)="authService.logout()" >Logout</a>
+</li>
