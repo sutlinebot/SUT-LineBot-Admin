@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogflowService } from '../shared/api/dialogflow.service';
+import { Form, NgForm, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +8,8 @@ import { DialogflowService } from '../shared/api/dialogflow.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  intentlist;
   constructor(private myapi: DialogflowService) { }
-
   ngOnInit() {
-    this.getintentList();
   }
-  getintentList() {
-    this.myapi.getIntentList().subscribe(data => {
-      console.log(data);
-    });
-  }
-
 }

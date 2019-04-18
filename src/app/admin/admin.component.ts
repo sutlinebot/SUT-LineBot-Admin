@@ -11,6 +11,8 @@ export class AdminComponent implements OnInit {
   constructor(private aithService: AuthService) { }
 
   ngOnInit() {
+
   }
 
 }
+

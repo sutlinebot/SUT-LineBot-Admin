@@ -38,9 +38,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AdminComponent } from './admin/admin.component';
+
+import { FormsModule } from '@angular/forms';
 
 
 import {
@@ -49,6 +51,9 @@ import {
   GoogleLoginProvider,
 } from 'ng4-social-login';
 import { HomeComponent } from './home/home.component';
+import { AddIntentComponent } from './add-intent/add-intent.component';
+import { DelIntentComponent } from './del-intent/del-intent.component';
+import { HeaderComponent } from './header/header.component';
 
 const CONFIG = new AuthServiceConfig([
   {
@@ -75,7 +80,10 @@ let config = {
     AppComponent,
     LoginComponent,
     AdminComponent,
-    HomeComponent
+    HomeComponent,
+    AddIntentComponent,
+    DelIntentComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +123,8 @@ let config = {
     MatSortModule,
     MatPaginatorModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {
