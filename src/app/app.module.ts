@@ -32,6 +32,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,20 +42,40 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AdminComponent } from './admin/admin.component';
 
-var config = {
-  apiKey: "AIzaSyDvWeKFMRV9SHApCS9rltqY5WaZL0octQQ",
-  authDomain: "botframe-2d07e.firebaseapp.com",
-  databaseURL: "https://botframe-2d07e.firebaseio.com",
-  projectId: "botframe-2d07e",
-  storageBucket: "botframe-2d07e.appspot.com",
-  messagingSenderId: "425053466223"
-};
 
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+} from 'ng4-social-login';
+import { HomeComponent } from './home/home.component';
+
+const CONFIG = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('425053466223-2djus2r480pa4l57ge3m5kkvt7a3g5fr.apps.googleusercontent.com')
+  },
+], false);
+
+export function provideConfig() {
+  return CONFIG;
+}
+
+
+let config = {
+  apiKey: 'AIzaSyDvWeKFMRV9SHApCS9rltqY5WaZL0octQQ',
+  authDomain: 'botframe-2d07e.firebaseapp.com',
+  databaseURL: 'https://botframe-2d07e.firebaseio.com',
+  projectId: 'botframe-2d07e',
+  storageBucket: 'botframe-2d07e.appspot.com',
+  messagingSenderId: '425053466223'
+};
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -92,9 +113,16 @@ var config = {
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    SocialLoginModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
