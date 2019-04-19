@@ -11,11 +11,25 @@ export class DialogflowService {
   // public httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + this.token.split('=')[2]})
 
   constructor(private http: HttpClient) { }
-
+  token = document.cookie.split('=')[3];
+  httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + this.token});
   getIntentList(){
     const token = document.cookie.split('=')[2];
     const httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + token});
     return this.http.get('https://dialogflow.googleapis.com/v2/projects/botframe-2d07e/agent/intents' , {headers: httpHeaders});
+    return this.http.get('https://dialogflow.googleapis.com/v2/projects/botframe-2d07e/agent/intents' , {headers: this.httpHeaders});
+  }
+
+  getDetailIntent (intentsID){
+    var url = "https://dialogflow.googleapis.com/v2/" + intentsID + "?intentView=INTENT_VIEW_FULL";
+    return this.http.get(url , {headers: new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + this.token })})
+  }
+
+  patchIntent(intentsID,json){
+    console.log(json);
+    
+    var url = "https://dialogflow.googleapis.com/v2/" + intentsID ;
+    return this.http.patch(url , json, {headers: this.httpHeaders});
   }
 
   addIntent(myform:NgForm){

@@ -38,9 +38,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AdminComponent } from './admin/admin.component';
+import { environment } from '../environments/environment';
 
 import { FormsModule } from '@angular/forms';
 
@@ -54,6 +56,7 @@ import { HomeComponent } from './home/home.component';
 import { AddIntentComponent } from './add-intent/add-intent.component';
 import { DelIntentComponent } from './del-intent/del-intent.component';
 import { HeaderComponent } from './header/header.component';
+import { TrainingComponent } from './training/training.component';
 
 const CONFIG = new AuthServiceConfig([
   {
@@ -66,15 +69,6 @@ export function provideConfig() {
   return CONFIG;
 }
 
-
-let config = {
-  apiKey: 'AIzaSyDvWeKFMRV9SHApCS9rltqY5WaZL0octQQ',
-  authDomain: 'botframe-2d07e.firebaseapp.com',
-  databaseURL: 'https://botframe-2d07e.firebaseio.com',
-  projectId: 'botframe-2d07e',
-  storageBucket: 'botframe-2d07e.appspot.com',
-  messagingSenderId: '425053466223'
-};
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,13 +77,15 @@ let config = {
     HomeComponent,
     AddIntentComponent,
     DelIntentComponent,
-    HeaderComponent
+    HeaderComponent,
+    TrainingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(config),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireDatabaseModule ,
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatCheckboxModule,
