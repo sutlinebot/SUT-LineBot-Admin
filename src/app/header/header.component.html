@@ -10,7 +10,7 @@
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="intents">intents</button>
-  <button mat-menu-item [matMenuTriggerFor]="training">training</button>
+  <button mat-menu-item routerLink="/training">training</button>
 </mat-menu>
 
 <mat-menu #intents="matMenu">
@@ -19,7 +19,3 @@
   <button mat-menu-item routerLink="/del-intent">DELETE INTENT</button>
 </mat-menu>
 
-<mat-menu #training="matMenu">
-  <button mat-menu-item>1....</button>
-  <button mat-menu-item>2....</button>
-</mat-menu>

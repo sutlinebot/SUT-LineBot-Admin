@@ -14,9 +14,6 @@ export class DialogflowService {
   token = document.cookie.split('=')[3];
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + this.token});
   getIntentList(){
-    const token = document.cookie.split('=')[2];
-    const httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + token});
-    return this.http.get('https://dialogflow.googleapis.com/v2/projects/botframe-2d07e/agent/intents' , {headers: httpHeaders});
     return this.http.get('https://dialogflow.googleapis.com/v2/projects/botframe-2d07e/agent/intents' , {headers: this.httpHeaders});
   }
 
