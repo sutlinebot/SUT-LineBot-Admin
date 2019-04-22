@@ -1,23 +1,23 @@
-<div class="container pt-3">
+<div class="bg">
+<div class="container">
   <div class="row justify-content-sm-center">
-    <div class="col-sm-10 col-md-6">
-      <div class="card border-info">
+    <div class="col-sm-20-col-md-16">
+      <div class="card-border-info">
         <div class="card-header">Login</div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4 text-center">
-              <img src="https://placeimg.com/128/128/nature">
-            </div>
-            <div class="col-md-8">
-
-                <input type="text" class="form-control mb-2" placeholder="Email" #userEmail required autofocus>
-                <input type="password" class="form-control mb-2" placeholder="Password" #userPassword required>
-                <button class="btn btn-lg btn-primary btn-block mb-1" (click)="authService.login(userEmail.value, userPassword.value)" >Login</button>
-                <button mat-raised-button color="primary"  (click)="signInWithGoogle()" >Sign in using Google+</button>
-            </div>
+      </div>
+      <div class="card-body">
+        
+          <div class="col-md-4 text-center">
+            <img class="logo" src="https://yt3.ggpht.com/a-/AAuE7mBltYc4u1b-W9S7UYyLPR9XLPCIgHwk_bl93Q=s900-mo-c-c0xffffffff-rj-k-no" >
           </div>
-        </div>
+        
+        <div class="col-md-8">
+          <input type="text" class="form-control mb-2" placeholder="Email" #userEmail required autofocus>
+          <input type="password" class="form-control mb-2" placeholder="Password" #userPassword required>
+          <button class="button" mat-raised-button color="primary"  (click)="signInWithGoogle()" >Sign in using Google+</button>
+      </div>
       </div>
     </div>
   </div>
+</div>
 </div>
