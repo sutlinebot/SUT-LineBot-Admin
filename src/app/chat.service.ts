@@ -22,7 +22,7 @@ export class ChatService {
 
   // Sends and receives messages via DialogFlow
   converse(msg: string) {
-    const token = document.cookie.split('=')[2];
+    const token = document.cookie.split('=')[3];
     const httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + token});
     const data = {
       queryInput: {
