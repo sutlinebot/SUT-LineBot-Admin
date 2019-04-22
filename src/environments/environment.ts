@@ -5,12 +5,15 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAHBRmkDE16iyXiE7KWH7uFQIvU2jsD25w",
-    authDomain: "botframe-2d07e.firebaseapp.com",
-    databaseURL: "https://botframe-2d07e.firebaseio.com",
-    projectId: "botframe-2d07e",
-    storageBucket: "botframe-2d07e.appspot.com",
-    messagingSenderId: "425053466223"
+    apiKey: 'AIzaSyAHBRmkDE16iyXiE7KWH7uFQIvU2jsD25w',
+    authDomain: 'botframe-2d07e.firebaseapp.com',
+    databaseURL: 'https://botframe-2d07e.firebaseio.com',
+    projectId: 'botframe-2d07e',
+    storageBucket: 'botframe-2d07e.appspot.com',
+    messagingSenderId: '425053466223'
+  },
+  dialogflow: {
+    angularBot: '6db9377e896a44deae927f260a18868e'
   }
 };
 

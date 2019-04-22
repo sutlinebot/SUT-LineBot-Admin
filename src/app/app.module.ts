@@ -38,8 +38,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AdminComponent } from './admin/admin.component';
 import { environment } from '../environments/environment';
@@ -57,6 +57,7 @@ import { AddIntentComponent } from './add-intent/add-intent.component';
 import { DelIntentComponent } from './del-intent/del-intent.component';
 import { HeaderComponent } from './header/header.component';
 import { TrainingComponent } from './training/training.component';
+import { ChatModule } from './chat/chat.module';
 
 const CONFIG = new AuthServiceConfig([
   {
@@ -120,7 +121,8 @@ export function provideConfig() {
     MatPaginatorModule,
     SocialLoginModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ChatModule
   ],
   providers: [
     {
