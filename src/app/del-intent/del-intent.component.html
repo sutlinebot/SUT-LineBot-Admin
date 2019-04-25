@@ -1,11 +1,14 @@
-<form #myform="ngForm" (onSubmit)="delIntent(myform.value)">
-  <p>ลบ intent</p>
-  <mat-form-field>
-    <mat-select placeholder="" name="name" ngModel>
-      <mat-option *ngFor="let intent of intentlist" [value]="intent">
-        {{intent.displayName}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <button type="submit" (click)="delIntent(myform.value)" mat-raised-button color="warn">ลบ</button><br><br>
-</form>
+<div class="absolute">
+    <form #myform="ngForm" (onSubmit)="delIntent(myform.value)">
+        <h1>Delete intent</h1>
+        <mat-form-field class="half-form">
+          <mat-select placeholder="" name="name" ngModel>
+            <mat-option *ngFor="let intent of intentlist" [value]="intent">
+              {{intent.displayName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <button type="submit" (click)="delIntent(myform.value)" mat-raised-button color="primary">ลบ</button><br><br>
+      </form>
+</div>
