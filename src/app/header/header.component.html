@@ -1,22 +1,21 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-  <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
-    <span>SUT LINE BOT</span>
-    <span class="example-spacer"></span>
-    <button mat-stroked-button color="accent" *ngIf="isLogin()" routerLink="/login">sign-in</button>
-    <button mat-stroked-button color="accent" (click)="signOut()" *ngIf="!isLogin()" routerLink="/login">sign-out</button>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="intents">intents</button>
-  <button mat-menu-item routerLink="/training">training</button>
-  <button mat-menu-item routerLink="/chatbot">chatbot</button>
-</mat-menu>
-
-<mat-menu #intents="matMenu">
-  <button mat-menu-item >view intents</button>
-  <button mat-menu-item routerLink="/add-intent">ADD INTENT</button>
-  <button mat-menu-item routerLink="/del-intent">DELETE INTENT</button>
-</mat-menu>
-
+    <mat-toolbar-row>
+    <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+      <span>SUT LINE BOT</span>
+      <span class="example-spacer"></span>
+      <button mat-stroked-button *ngIf="isLogin()" routerLink="/login">sign-in</button>
+      <button mat-stroked-button (click)="signOut()" *ngIf="!isLogin()" routerLink="/login">sign-out</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="intents">intents</button>
+    <button mat-menu-item routerLink="/training">training</button>
+    <button mat-menu-item routerLink="/chatbot">chatbot</button>
+  </mat-menu>
+  
+  <mat-menu #intents="matMenu">
+    <button mat-menu-item >view intents</button>
+    <button mat-menu-item routerLink="/add-intent">ADD INTENT</button>
+    <button mat-menu-item routerLink="/del-intent">DELETE INTENT</button>
+  </mat-menu>
