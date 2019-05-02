@@ -3,5 +3,7 @@
 }
 
 .left-menu {
+    border-radius: 6px;
     background-color: aliceblue;
+    padding: 25px;
 }
