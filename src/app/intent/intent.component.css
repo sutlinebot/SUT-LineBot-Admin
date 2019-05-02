@@ -17,3 +17,11 @@ div.absolute {
    .half-form {
     width: 50%;
   }
+
+  table {
+    width: 100%;
+  }
+
+  .table-no {
+    width: 100px;
+  }
