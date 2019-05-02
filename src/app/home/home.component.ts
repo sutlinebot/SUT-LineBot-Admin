@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   questionsRef: AngularFireList<any>;
   questions: any[];
 
-  intents;
+  intents: any;
   fullIntents;
   constructor(public db: AngularFireDatabase, private myapi: DialogflowService, private http: HttpClient) {
     this.questionsRef = db.list('question');
@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
           this.intents[index] = [cur.displayName, cur.name]
         });
     });
+    console.log(this.intents);
   }
 
   assignIntent(word,wordKey ,intentsID) {
