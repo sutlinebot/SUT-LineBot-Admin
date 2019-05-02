@@ -1,22 +1,29 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-    <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
-      <span>SUT LINE BOT</span>
-      <span class="example-spacer"></span>
-      <button mat-stroked-button *ngIf="isLogin()" routerLink="/login">sign-in</button>
-      <button mat-stroked-button (click)="signOut()" *ngIf="!isLogin()" routerLink="/login">sign-out</button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="intents">intents</button>
-    <button mat-menu-item routerLink="/training">training</button>
-    <button mat-menu-item routerLink="/chatbot">chatbot</button>
-  </mat-menu>
-  
-  <mat-menu #intents="matMenu">
-    <button mat-menu-item routerLink="/intent">view intents</button>
-    <button mat-menu-item routerLink="/add-intent">ADD INTENT</button>
-    <button mat-menu-item routerLink="/edit">EDIT INTENT</button>
-    <button mat-menu-item routerLink="/del-intent">DELETE INTENT</button>
-  </mat-menu>
+<br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <mat-toolbar color="primary" class="absolute">
+            <mat-toolbar-row>
+            <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>&nbsp;
+              <button mat-stroked-button routerLink="/home">SUT LINE BOT</button>
+              <span class="example-spacer"></span>
+              <button mat-stroked-button *ngIf="isLogin()" routerLink="/login">Sign-in</button>
+              <button mat-stroked-button (click)="signOut()" *ngIf="!isLogin()" routerLink="/login">Sign-out</button>
+            </mat-toolbar-row>
+          </mat-toolbar>
+          
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="intents">Intents</button>
+            <button mat-menu-item routerLink="/training">Training</button>
+            <button mat-menu-item routerLink="/chatbot">Chatbot</button>
+          </mat-menu>
+          
+          <mat-menu #intents="matMenu">
+            <button mat-menu-item routerLink="/intent">View intents</button>
+            <button mat-menu-item routerLink="/add-intent">Add Intent</button>
+            <button mat-menu-item routerLink="/edit">Edit Intent</button>
+            <button mat-menu-item routerLink="/del-intent">Delete Intent</button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

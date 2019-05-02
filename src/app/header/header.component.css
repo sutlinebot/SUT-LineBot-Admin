@@ -5,3 +5,7 @@
   .example-spacer {
     flex: 1 1 auto;
   }
+
+  .absolute {
+    border-radius: 6px;
+  }
