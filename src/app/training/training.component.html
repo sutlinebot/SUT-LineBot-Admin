@@ -13,17 +13,15 @@
 </section> -->
 
 <div class="container">
-  <div class="absolute row">
-    <h1>Questions lists</h1><br>
+  <h1>Questions lists</h1><br>
     <div class="row">
       <div class="col-md">
         <mat-list *ngFor="let question of questions">
-          <mat-list-item>{{ question.value.question }}  = >  <button mat-button [matMenuTriggerFor]="menu">Click to assign</button></mat-list-item>
+          <mat-list-item>{{ question.value.question }}  = > <button mat-button [matMenuTriggerFor]="menu">Click to assign</button></mat-list-item>
           <mat-menu #menu="matMenu">
             <button mat-menu-item *ngFor="let intent of intents" (click)="assignIntent(question.value.question,question.key,intent[1])">{{intent[0]}}</button>
           </mat-menu>
         </mat-list>
       </div>
     </div>
-  </div>
 </div>
