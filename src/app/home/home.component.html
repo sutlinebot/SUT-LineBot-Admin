@@ -1,3 +1,27 @@
-<p>
-  home works!
-</p>
+<section>
+  <table class="body">
+    <td>
+        <h1>Questions list</h1>
+        <mat-list *ngFor="let question of questions">
+            <mat-list-item>{{ question.value.question }}  = >  <button mat-button [matMenuTriggerFor]="menu">Click to assign</button>
+            </mat-list-item>
+            
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngFor="let intent of intents" (click)="assignIntent(question.value.question,question.key,intent[1])">{{intent[0]}}</button>
+            </mat-menu>
+          </mat-list>
+      </td>
+    <td>
+        <h1>Intents list</h1>
+        <!-- <mat-list *ngFor="let intent of intents">
+            {{intent[0]}}
+          </mat-list> -->
+
+        <mat-list *ngFor="let question of questions">
+            <mat-list-item>{{ question.value.question }}  = >
+            </mat-list-item>
+          </mat-list>
+    </td>
+  </table>
+   
+</section>

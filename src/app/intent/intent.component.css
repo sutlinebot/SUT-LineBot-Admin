@@ -1,23 +1,19 @@
-
-table.body {
+div.absolute {
     position: absolute;
     top: 80px;
-    left: 150px;
-    right: 150px;
-    width: 1200px;
+    left: 300px;
+    right: 300px;
+    width: 800px;
     border-radius: 3px;
     margin: auto;
     padding: 25px;
     background-color: whitesmoke;
-}
-
-td {
-    width: 600px;
-}
-  .full-form {
-      width: 100%;
   }
-  
-  .half-form {
-      width: 50%;
+
+  .full-form {
+    width: 100%;
+  }
+
+   .half-form {
+    width: 50%;
   }
