@@ -1,9 +1,13 @@
-<div class="absolute">
-    <form #myform="ngForm" (onSubmit)="addIntent(myform.value)">
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <form #myform="ngForm" (onSubmit)="addIntent(myform.value)">
         <h1>Add new intent</h1>
         <mat-form-field class="full-form">
           <input matInput placeholder="Intent" name="displayName" ngModel>
         </mat-form-field><br>
-        <button class="button" mat-raised-button type="submit" color="primary" (click)="addIntent(myform.value)">เพิ่ม</button><br><br>
+        <button class="button" mat-raised-button type="submit" color="primary" (click)="addIntent(myform.value)">Confirm</button><br><br>
       </form>
-</div>
+    </div>
+  </div>
+</div>>
