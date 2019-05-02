@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { DialogflowService } from '../shared/api/dialogflow.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intent',
@@ -21,10 +22,22 @@ export class IntentComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public db: AngularFireDatabase, private myapi: DialogflowService, private http: HttpClient) { }
+  constructor(public db: AngularFireDatabase, private myapi: DialogflowService, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
+    if (this.isLogin()) {
+      this.router.navigate(['/login']);
+    }
+
     this.getintentList();
+  }
+
+  isLogin(){
+    const token = document.cookie.split('=')[2];
+    if(token != null) {
+      return false;
+    }
+    return true;
   }
 
   getintentList() {

@@ -13,3 +13,7 @@ div.absolute {
   .half-form {
       width: 50%;
   }
+
+  .bg {
+    padding: 25px;
+  }

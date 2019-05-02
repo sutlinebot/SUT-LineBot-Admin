@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { DialogflowService } from '../shared/api/dialogflow.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-training',
@@ -17,13 +18,17 @@ export class TrainingComponent implements OnInit {
 
   intents;
   fullIntents;
-  constructor(public db: AngularFireDatabase, private myapi: DialogflowService, private http: HttpClient) {
+  constructor(public db: AngularFireDatabase, private myapi: DialogflowService, private http: HttpClient, private router: Router) {
     this.questionsRef = db.list('question');
 
   }
 
 
   ngOnInit() {
+    if (this.isLogin()) {
+      this.router.navigate(['/login']);
+    }
+    
     this.questionsRef.snapshotChanges().map(actions => {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
@@ -35,6 +40,14 @@ export class TrainingComponent implements OnInit {
     this.getintentList();
   }
 
+  isLogin(){
+    const token = document.cookie.split('=')[2];
+    if(token != null) {
+      return false;
+    }
+    return true;
+  }
+  
   getintentList() {
     this.myapi.getIntentList().subscribe((data: any) => {
       this.intents = data.intents;
