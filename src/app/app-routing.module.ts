@@ -10,6 +10,7 @@ import { TrainingComponent } from './training/training.component';
 import { ChatDialogComponent } from './chat/chat-dialog/chat-dialog.component';
 import { IntentComponent } from './intent/intent.component';
 import { EditIntentComponent } from './edit-intent/edit-intent.component';
+import { EditIntentSingleComponent } from './edit-intent-single/edit-intent-single.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'training', component: TrainingComponent },
   { path: 'chatbot', component: ChatDialogComponent },
   { path: 'intent', component: IntentComponent },
-  { path: 'edit', component: EditIntentComponent}
+  { path: 'edit', component: EditIntentComponent },
+  { path: 'edit-single', component: EditIntentSingleComponent, data: { animation: 'heroes' } }
 ];
 
 @NgModule({

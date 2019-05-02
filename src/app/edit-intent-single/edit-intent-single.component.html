@@ -1,0 +1,20 @@
+<form #item="ngForm" (ngSubmit)="onClickSubmit(item.value)">
+  <mat-form-field>
+    <input matInput name="indent_name"  [ngModel]="detailIntent.displayName" placeholder="Indent Name" >
+  </mat-form-field><br>
+
+  <h2>Training phrases </h2>
+  <div *ngFor="let item of detailIntent.trainingPhrases; let i = index; " >
+    <mat-form-field>
+      <input matInput placeholder="Add user expression"  [ngModel]="item.parts[0].text"  name="indent_training{{i}}"><br>
+    </mat-form-field>
+  </div>
+
+  <h2>Responses </h2>
+  <div *ngFor="let item of detailIntent.messages[0].text.text ; let i = index;">
+      <mat-form-field>
+        <input matInput placeholder="Enter text response variant" [ngModel]="item"  name="indent_response{{i}}"><br>
+      </mat-form-field>
+    </div>
+  <button type="submit" mat-stroked-button color="primary">Save</button>
+</form>

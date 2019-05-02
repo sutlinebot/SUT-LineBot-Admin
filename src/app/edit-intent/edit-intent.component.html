@@ -1,13 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <p>left menu</p>
-    </div>
     <div class="col-md center text-center">
-      <p>body</p>
+      <ul *ngFor="let item of intents">
+        <li><a  (click)="editIntent(item)" >{{item[0]}}</a></li>
+      </ul>
     </div>
-    <div class="col-md-2">
-      <p>right menu</p>
-    </div>
-  </div>
 </div>

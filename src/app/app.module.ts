@@ -61,6 +61,7 @@ import { ChatModule } from './chat/chat.module';
 import { IntentComponent } from './intent/intent.component';
 import { EditIntentComponent } from './edit-intent/edit-intent.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
+import { EditIntentSingleComponent } from './edit-intent-single/edit-intent-single.component';
 
 const CONFIG = new AuthServiceConfig([
   {
@@ -85,7 +86,8 @@ export function provideConfig() {
     TrainingComponent,
     IntentComponent,
     EditIntentComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    EditIntentSingleComponent
   ],
   imports: [
     BrowserModule,
