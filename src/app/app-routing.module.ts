@@ -9,6 +9,7 @@ import { DelIntentComponent } from './del-intent/del-intent.component';
 import { TrainingComponent } from './training/training.component';
 import { ChatDialogComponent } from './chat/chat-dialog/chat-dialog.component';
 import { IntentComponent } from './intent/intent.component';
+import { EditIntentComponent } from './edit-intent/edit-intent.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'del-intent', component: DelIntentComponent },
   { path: 'training', component: TrainingComponent },
   { path: 'chatbot', component: ChatDialogComponent },
-  { path: 'intent', component: IntentComponent }
+  { path: 'intent', component: IntentComponent },
+  { path: 'edit', component: EditIntentComponent}
 ];
 
 @NgModule({
