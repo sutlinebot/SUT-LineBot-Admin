@@ -59,6 +59,7 @@ import { HeaderComponent } from './header/header.component';
 import { TrainingComponent } from './training/training.component';
 import { ChatModule } from './chat/chat.module';
 import { IntentComponent } from './intent/intent.component';
+import { EditIntentComponent } from './edit-intent/edit-intent.component';
 
 const CONFIG = new AuthServiceConfig([
   {
@@ -81,7 +82,8 @@ export function provideConfig() {
     DelIntentComponent,
     HeaderComponent,
     TrainingComponent,
-    IntentComponent
+    IntentComponent,
+    EditIntentComponent
   ],
   imports: [
     BrowserModule,
