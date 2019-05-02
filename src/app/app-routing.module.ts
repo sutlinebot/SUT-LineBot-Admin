@@ -8,16 +8,18 @@ import { AddIntentComponent } from './add-intent/add-intent.component';
 import { DelIntentComponent } from './del-intent/del-intent.component';
 import { TrainingComponent } from './training/training.component';
 import { ChatDialogComponent } from './chat/chat-dialog/chat-dialog.component';
+import { IntentComponent } from './intent/intent.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'administrator', component: AdminComponent },
-  { path: 'home', component: HomeComponent},
-  { path: 'add-intent', component: AddIntentComponent},
-  { path: 'del-intent', component: DelIntentComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'add-intent', component: AddIntentComponent },
+  { path: 'del-intent', component: DelIntentComponent },
   { path: 'training', component: TrainingComponent },
-  { path: 'chatbot', component: ChatDialogComponent}
+  { path: 'chatbot', component: ChatDialogComponent },
+  { path: 'intent', component: IntentComponent }
 ];
 
 @NgModule({

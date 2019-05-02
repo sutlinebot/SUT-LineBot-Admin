@@ -77,15 +77,8 @@ export class TrainingComponent implements OnInit {
         console.log("Error", error);
         //alert("ผิดพลาด " + error)
       }
-    )
-
-
-
+    );
 
   }
-
-
-
-
 
 }
