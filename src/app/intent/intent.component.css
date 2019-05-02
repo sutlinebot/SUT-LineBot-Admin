@@ -25,3 +25,7 @@ div.absolute {
   .table-no {
     width: 100px;
   }
+
+  .bg {
+    padding: 25px;
+  }

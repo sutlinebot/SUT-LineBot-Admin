@@ -5,3 +5,7 @@ div.absolute {
     padding: 50px 40px 50px 40px;
     background-color: whitesmoke;
   }
+
+  .bg {
+    padding: 25px;
+  }

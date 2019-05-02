@@ -13,3 +13,7 @@ div.absolute {
   .full-form {
       width: 100%;
   }
+
+.bg {
+    padding: 25px;
+}
