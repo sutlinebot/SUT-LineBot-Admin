@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md">
       <form #myform="ngForm" (onSubmit)="delIntent(myform.value)">
-        <h1>Delete intent</h1>
+        <h1>Delete intent</h1><br><br>
         <mat-form-field class="half-form">
           <mat-select placeholder="" name="name" ngModel>
             <mat-option *ngFor="let intent of intentlist" [value]="intent">
@@ -11,7 +11,7 @@
           </mat-select>
         </mat-form-field>
         <br>
-        <button type="submit" (click)="delIntent(myform.value)" mat-raised-button color="primary">ลบ</button><br><br>
+        <button type="submit" (click)="delIntent(myform.value)" mat-raised-button color="primary">Confirm</button><br><br>
       </form>
     </div>
   </div>

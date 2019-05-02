@@ -3,15 +3,15 @@
     <div class="row justify-content-sm-center">
       <div class="col-sm-20-col-md-16">
         <div class="card-body">
-          <h1 class="text-center">เข้าสู่ระบบ</h1>
+          <h1 class="text-center">Please login!</h1><br>
           
             <div class="text-center">
               <img class="logo" src="https://upload.wikimedia.org/wikipedia/th/thumb/3/33/Sut_logo_Thai.svg/1200px-Sut_logo_Thai.svg.png" >
             </div>
           
           <div class="col-md-8">
-            <input type="text" class="form-control mb-2" placeholder="Email" #userEmail required autofocus>
-            <input type="password" class="form-control mb-2" placeholder="Password" #userPassword required>
+            <input type="text" class="form-control text-size" placeholder="Email" #userEmail required autofocus><br>
+            <input type="password" class="form-control text-size" placeholder="Password" #userPassword required><br>
             <button class="button" mat-raised-button color="primary"  (click)="signInWithGoogle()" >Sign in using Google+</button>
         </div>
         </div>
