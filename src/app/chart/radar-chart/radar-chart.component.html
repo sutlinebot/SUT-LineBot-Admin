@@ -1,0 +1,8 @@
+<h1>success : {{successrate}} %</h1>
+<h1>fail : {{failrate}} %</h1>
+<div style="display: block">
+  <canvas baseChart
+          [datasets]="radarChartData"
+          [labels]="radarChartLabels"
+          [chartType]="radarChartType"></canvas>
+</div>

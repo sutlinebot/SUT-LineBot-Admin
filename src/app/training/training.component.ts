@@ -28,13 +28,13 @@ export class TrainingComponent implements OnInit {
     if (this.isLogin()) {
       this.router.navigate(['/login']);
     }
-    
+
     this.questionsRef.snapshotChanges().map(actions => {
       return actions.map(action => ({ key: action.key, value: action.payload.val() }));
     }).subscribe(items => {
       this.questions = items;
       console.log(this.questions);
-      
+
     });
 
     this.getintentList();
@@ -60,9 +60,10 @@ export class TrainingComponent implements OnInit {
 
   assignIntent(word,wordKey ,intentsID) {
     this.myapi.getDetailIntent(intentsID).subscribe(
-      data => {
+      (data: any) => {
         console.log("GET Request is successful ", data);
         this.fullIntents = data;
+        this.countfail(data.displayName)
         delete this.fullIntents.followupIntentInfo;
         this.fullIntents.trainingPhrases.push(
           {
@@ -92,6 +93,16 @@ export class TrainingComponent implements OnInit {
       }
     );
 
+  }
+
+  countfail(name) {
+    let form:any = {
+      'name': name
+    };
+    // let httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+    this.http.post('https://sut-line-bot.herokuapp.com/countfail', form ).subscribe(data => {
+      console.log('success');
+    });
   }
 
 }

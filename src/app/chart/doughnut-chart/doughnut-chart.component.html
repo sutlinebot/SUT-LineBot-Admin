@@ -1,0 +1,16 @@
+<h1>success : {{successrate}} %</h1>
+<div style="display: block">
+  <canvas baseChart
+              [data]="successChartData"
+              [labels]="Labels"
+              [chartType]="doughnutChartType"></canvas>
+</div>
+
+
+<h1>fail : {{failrate}} %</h1>
+<div style="display: block">
+  <canvas baseChart
+              [data]="failChartData"
+              [labels]="Labels"
+              [chartType]="doughnutChartType"></canvas>
+</div>
