@@ -45,6 +45,7 @@ import { AdminComponent } from './admin/admin.component';
 import { environment } from '../environments/environment';
 
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 
 import {
@@ -62,6 +63,10 @@ import { IntentComponent } from './intent/intent.component';
 import { EditIntentComponent } from './edit-intent/edit-intent.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { EditIntentSingleComponent } from './edit-intent-single/edit-intent-single.component';
+import { BarChartComponent } from './chart/bar-chart/bar-chart.component';
+import { DoughnutChartComponent } from './chart/doughnut-chart/doughnut-chart.component';
+import { PieChartComponent } from './chart/pie-chart/pie-chart.component';
+import { RadarChartComponent } from './chart/radar-chart/radar-chart.component';
 
 const CONFIG = new AuthServiceConfig([
   {
@@ -87,7 +92,11 @@ export function provideConfig() {
     IntentComponent,
     EditIntentComponent,
     LeftMenuComponent,
-    EditIntentSingleComponent
+    EditIntentSingleComponent,
+    BarChartComponent,
+    DoughnutChartComponent,
+    PieChartComponent,
+    RadarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +139,9 @@ export function provideConfig() {
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
-    ChatModule
+    ChatModule,
+    ChartsModule,
+    
   ],
   providers: [
     {

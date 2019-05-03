@@ -11,6 +11,10 @@ import { ChatDialogComponent } from './chat/chat-dialog/chat-dialog.component';
 import { IntentComponent } from './intent/intent.component';
 import { EditIntentComponent } from './edit-intent/edit-intent.component';
 import { EditIntentSingleComponent } from './edit-intent-single/edit-intent-single.component';
+import { DoughnutChartComponent } from './chart/doughnut-chart/doughnut-chart.component';
+import { RadarChartComponent } from './chart/radar-chart/radar-chart.component';
+import { BarChartComponent } from './chart/bar-chart/bar-chart.component';
+import { PieChartComponent } from './chart/pie-chart/pie-chart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -23,6 +27,10 @@ const routes: Routes = [
   { path: 'chatbot', component: ChatDialogComponent },
   { path: 'intent', component: IntentComponent },
   { path: 'edit', component: EditIntentComponent },
+  { path: 'bar-chart', component: BarChartComponent},
+  { path: 'rader-chart', component: RadarChartComponent},
+  { path: 'doughnut-chart', component: DoughnutChartComponent},
+  { path: 'pie-chart', component: PieChartComponent},
   { path: 'edit-single', component: EditIntentSingleComponent, data: { animation: 'heroes' } }
 ];
 

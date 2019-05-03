@@ -16,6 +16,7 @@
             <button mat-menu-item [matMenuTriggerFor]="intents">Intents</button>
             <button mat-menu-item routerLink="/training">Training</button>
             <button mat-menu-item routerLink="/chatbot">Chatbot</button>
+            <button mat-menu-item [matMenuTriggerFor]="chart">Analytics</button>
           </mat-menu>
           
           <mat-menu #intents="matMenu">
@@ -24,6 +25,13 @@
             <button mat-menu-item routerLink="/edit">Edit Intent</button>
             <button mat-menu-item routerLink="/del-intent">Delete Intent</button>
       </mat-menu>
+
+      <mat-menu #chart="matMenu">
+            <button mat-menu-item routerLink="/bar-chart">Bar Chart</button>
+            <button mat-menu-item routerLink="/rader-chart">Rader Chart</button>
+            <button mat-menu-item routerLink="/doughnut-chart">Doughnut Chart</button>
+            <button mat-menu-item routerLink="/pie-chart">Pie Chart</button>
+          </mat-menu>
     </div>
   </div>
 </div>
