@@ -53,6 +53,7 @@ import {
   AuthServiceConfig,
   GoogleLoginProvider,
 } from 'ng4-social-login';
+
 import { HomeComponent } from './home/home.component';
 import { AddIntentComponent } from './add-intent/add-intent.component';
 import { DelIntentComponent } from './del-intent/del-intent.component';
@@ -67,6 +68,10 @@ import { BarChartComponent } from './chart/bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './chart/doughnut-chart/doughnut-chart.component';
 import { PieChartComponent } from './chart/pie-chart/pie-chart.component';
 import { RadarChartComponent } from './chart/radar-chart/radar-chart.component';
+import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
+import { CommonModule } from '@angular/common';
+import { AuthGuard } from './shared';
+
 
 const CONFIG = new AuthServiceConfig([
   {
@@ -141,13 +146,18 @@ export function provideConfig() {
     FormsModule,
     ChatModule,
     ChartsModule,
-    
+    CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    LanguageTranslationModule,
   ],
   providers: [
+    AuthGuard,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })
