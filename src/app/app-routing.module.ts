@@ -20,7 +20,7 @@ import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
   // { path: 'login', component: LoginComponent },
   { path: 'administrator', component: AdminComponent },
