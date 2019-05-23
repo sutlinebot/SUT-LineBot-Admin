@@ -1,0 +1,19 @@
+div.absolute {
+    position: absolute;
+    top: 80px;
+    left: 300px;
+    right: 300px;
+    width: 800px;
+    border-radius: 3px;
+    margin: auto;
+    padding: 25px;
+    background-color: whitesmoke;
+  }
+
+  .full-form {
+      width: 100%;
+  }
+
+.bg {
+    padding: 25px;
+}
