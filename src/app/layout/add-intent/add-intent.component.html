@@ -1,0 +1,13 @@
+<div class="container bg">
+  <div class="row">
+    <div class="col-md">
+      <form #myform="ngForm" (onSubmit)="addIntent(myform.value)">
+        <h1>Add new intent</h1>
+        <mat-form-field class="form-group">
+          <input matInput  class="form-control" name="displayName" ngModel>
+        </mat-form-field><br>
+        <button  class="btn btn-primary" mat-raised-button type="submit" color="primary" (click)="addIntent(myform.value)">Confirm</button><br><br>
+      </form>
+    </div>
+  </div>
+</div>
