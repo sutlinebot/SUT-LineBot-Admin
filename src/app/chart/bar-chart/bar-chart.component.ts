@@ -30,8 +30,8 @@ export class BarChartComponent implements OnInit {
   loaddata() {
     this.http.get('https://sut-line-bot.herokuapp.com/getcount').subscribe((data: any) => {
       this.barChartLabels = data.Labels;
-      this.barChartData[0]['data'] = data.success;
-      this.barChartData[1]['data'] = data.fail;
+      this.barChartData[0].data = data.success;
+      this.barChartData[1].data = data.fail;
       this.failrate = Number(((data.sumfail / (data.sumfail + data.sumsuccess)) * 100).toFixed(2));
       this.successrate = Number(((data.sumsuccess / (data.sumfail + data.sumsuccess)) * 100).toFixed(2));
     });

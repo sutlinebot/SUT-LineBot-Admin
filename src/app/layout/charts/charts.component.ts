@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Label, Color } from 'ng2-charts';
 
 @Component({
     selector: 'app-charts',
@@ -17,9 +18,13 @@ export class ChartsComponent implements OnInit {
       public Labels = Array.from(Array(10).keys());
       public barChartType = 'bar';
       public barChartLegend = true;
+      public barChartColors: Color[] = [
+        { backgroundColor:  'skyblue', borderColor: 'dodgerblue',  borderWidth: 2},
+        { backgroundColor: '#F08080',  borderColor: 'firebrick',  borderWidth: 2},
+      ];
       public chartData = [
         {data: Array.from(Array(10).keys()), label: 'success'},
-        {data: Array.from(Array(10).keys()), label: 'fail'}
+        {data: Array.from(Array(10).keys()), label: 'fail'},
       ];
       failrate = 0;
       successrate = 0;
@@ -32,11 +37,19 @@ export class ChartsComponent implements OnInit {
     public doughnutChartType = 'doughnut';
 
     // Radar
+    // นับจำนวนที่ส่งมาทั้งหมด
       public radarChartType = 'radar';
-
+      public countData = [ {data: Array.from(Array(10).keys()), label: 'จำนวนครั้งที่ส่ง'} ];
+      public raderColors: Color[] = [
+        { backgroundColor: 'rgba(105, 0, 132, .2)', borderColor: 'rgba(200, 99, 132, .7)', borderWidth: 2 },
+      ];
     // Pie
 
     public pieChartType = 'pie';
+    public percentSuccess = Array.from(Array(10).keys());
+    public pieColors: Color[] = [
+      { backgroundColor:   ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360']},
+    ];
 
 
     // PolarArea
@@ -56,35 +69,7 @@ export class ChartsComponent implements OnInit {
     public lineChartOptions: any = {
         responsive: true
     };
-    // public lineChartColors: Array<any> = [
-    //     {
-    //         // grey
-    //         backgroundColor: 'rgba(148,159,177,0.2)',
-    //         borderColor: 'rgba(148,159,177,1)',
-    //         pointBackgroundColor: 'rgba(148,159,177,1)',
-    //         pointBorderColor: '#fff',
-    //         pointHoverBackgroundColor: '#fff',
-    //         pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    //     },
-    //     {
-    //         // dark grey
-    //         backgroundColor: 'rgba(77,83,96,0.2)',
-    //         borderColor: 'rgba(77,83,96,1)',
-    //         pointBackgroundColor: 'rgba(77,83,96,1)',
-    //         pointBorderColor: '#fff',
-    //         pointHoverBackgroundColor: '#fff',
-    //         pointHoverBorderColor: 'rgba(77,83,96,1)'
-    //     },
-    //     {
-    //         // grey
-    //         backgroundColor: 'rgba(148,159,177,0.2)',
-    //         borderColor: 'rgba(148,159,177,1)',
-    //         pointBackgroundColor: 'rgba(148,159,177,1)',
-    //         pointBorderColor: '#fff',
-    //         pointHoverBackgroundColor: '#fff',
-    //         pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    //     }
-    // ];
+
     public lineChartLegend: boolean;
     public lineChartType: string;
 
@@ -97,27 +82,15 @@ export class ChartsComponent implements OnInit {
         // console.log(e);
     }
 
-    // public randomize(): void {
-    //     // Only Change 3 values
-    //     const data = [
-    //         Math.round(Math.random() * 100),
-    //         59,
-    //         80,
-    //         Math.random() * 100,
-    //         56,
-    //         Math.random() * 100,
-    //         40
-    //     ];
-    //     const clone = JSON.parse(JSON.stringify(this.barChartData));
-    //     clone[0].data = data;
-    //     this.barChartData = clone;
-    //     /**
-    //      * (My guess), for Angular to recognize the change in the dataset
-    //      * it has to change the dataset variable directly,
-    //      * so one way around it, is to clone the data, change it and then
-    //      * assign it;
-    //      */
-    // }
+    public getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
     ngOnInit() {
         this.barChartLegend = true;
         this.polarAreaLegend = true;
@@ -134,6 +107,17 @@ export class ChartsComponent implements OnInit {
           this.failChartData = data.fail;
           this.failrate = Number(((data.sumfail / (data.sumfail + data.sumsuccess)) * 100).toFixed(2));
           this.successrate = Number(((data.sumsuccess / (data.sumfail + data.sumsuccess)) * 100).toFixed(2));
+          const sumcount = []; // fail + success
+          const percentSuccessTemp = []; //
+          const color = [];
+          data.success.forEach((item, index) => {
+            sumcount[index] = item + data.fail[index];
+            percentSuccessTemp[index] = Number((item / sumcount[index]) * 100).toFixed(2);
+            color[index] = this.getRandomColor();
+          });
+          this.countData[0].data = sumcount;
+          this.percentSuccess = percentSuccessTemp;
+          this.pieColors[0].backgroundColor = color;
         });
       }
 }
