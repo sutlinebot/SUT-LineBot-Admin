@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { PageHeaderModule } from '../../shared';
+import { EditIntentComponent } from '../edit-intent/edit-intent.component';
+
 
 @NgModule({
     imports: [
@@ -21,6 +23,6 @@ import { PageHeaderModule } from '../../shared';
         TypeaheadModule.forRoot(),
         PageHeaderModule
     ],
-    declarations: [AddIntentComponent]
+    declarations: [AddIntentComponent,EditIntentComponent]
 })
 export class AddIntentModule {}
