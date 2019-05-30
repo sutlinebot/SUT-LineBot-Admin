@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'rader-chart', component: RadarChartComponent },
   { path: 'doughnut-chart', component: DoughnutChartComponent },
   { path: 'pie-chart', component: PieChartComponent },
-  { path: 'edit-single', component: EditIntentSingleComponent, data: { animation: 'heroes' } },
+  //{ path: 'edit-single', component: EditIntentSingleComponent},
   { path: 'login', loadChildren: './login.1/login.module#LoginModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupModule' },
   { path: 'error', loadChildren: './server-error/server-error.module#ServerErrorModule' },
