@@ -25,6 +25,7 @@ export class AddIntentComponent implements OnInit {
     console.log(myform);
     this.myapi.addIntent(myform).subscribe(data => {
       alert('เพิ่ม ' + myform.displayName + ' แล้ว');
+      this.getintentList();
     });
   }
 
