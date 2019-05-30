@@ -1,13 +1,74 @@
-<div class="container bg">
-  <div class="row">
-    <div class="col-md">
-      <form #myform="ngForm" (onSubmit)="addIntent(myform.value)">
-        <h1>Add new intent</h1>
-        <mat-form-field class="form-group">
-          <input class="form-control" name="displayName" ngModel>
-        </mat-form-field><br>
-        <button  class="btn btn-primary" mat-raised-button type="submit" color="primary" (click)="addIntent(myform.value)">Confirm</button><br><br>
-      </form>
-    </div>
-  </div>
+<app-page-header [heading]="'Intent'" [icon]="'fa fa-android'"></app-page-header>
+<div class="row">
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-header">
+                    <i class="fa fa-plus"></i> Add Intent
+                </div>
+                <!-- /.card-header -->
+                <form #myform="ngForm" (onSubmit)="addIntent(myform.value)">
+                      <div class="form-group">
+                        <label for="displayName">New Intent</label>
+                        <input type="email" class="form-control" name="displayName" id="displayName" placeholder="New Intent" ngModel>
+                      </div>
+                      <button  class="btn btn-primary"  type="submit" (click)="addIntent(myform.value)">Confirm</button>
+                      &nbsp;
+                      <button  class="btn btn-danger"  type="button" (click)="clear(myform)">Clear</button><br><br>
+                </form>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-6">
+            <div class="card card-default">
+                <div class="card-header">
+                    <i class="fa fa-minus"></i> Delete Intent
+                </div>
+                <!-- /.card-header -->
+                <!--
+
+                    
+                -->
+              
+                    <div class="form-group">
+                        <label>Delete Intent</label>
+                        <select class="browser-default custom-select" [(ngModel)]="delselect">
+                            <option selected *ngFor="let intent of intentlist" [value]="intent.name">{{intent.displayName}}</option>
+                        </select>  
+                    </div>
+                     <div>
+                        <button class="btn btn-primary"  type="button" (click)="delIntent(delselect)" color="primary">Confirm</button><br><br>
+                </div> 
+                
+                
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+            <!-- /.card .chat-card -->
+        </div>
+        <!-- /.col-lg-4 -->
+</div><br><br>
+
+<div class="row">
+        <div class="col-lg-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <i class="far fa-edit"></i> Edit Intent
+                </div>
+                <!-- /.card-header -->
+
+                <!--
+                    
+                    เอาโค้ตมาใส่ครับท่าน
+
+                -->
+
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-lg-8 -->
 </div>
