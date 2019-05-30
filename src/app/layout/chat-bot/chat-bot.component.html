@@ -1,0 +1,18 @@
+<div class="container bg">
+    <div class="row">
+      <div class="col-md">
+        <h1>SUT Registration Bot</h1><br><br>
+        
+        <ng-container *ngFor="let message of messages | async">
+            <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                              'to':   message.sentBy === 'user' }">
+              {{ message.content }}
+            </div><br>
+          </ng-container>
+          <br><br>
+          <input class="input-text" [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
+          <br><br>
+          <button mat-stroked-button class="button" (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
