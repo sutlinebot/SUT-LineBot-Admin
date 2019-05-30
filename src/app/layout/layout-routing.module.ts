@@ -21,6 +21,7 @@ const routes: Routes = [
             { path: 'training', loadChildren: './training/training.module#TrainingModule' },
             { path: 'add-intent', loadChildren: './add-intent/add-intent.module#AddIntentModule' },
             { path: 'chat', loadChildren: './chat-bot/chat-bot.module#ChatBotModule' },
+            { path: 'delete-intent', loadChildren: './delete-intent/delete-intent.module#DeleteIntentModule' },
         ]
     }
 ];
