@@ -101,7 +101,7 @@ export function provideConfig() {
     BarChartComponent,
     DoughnutChartComponent,
     PieChartComponent,
-    RadarChartComponent
+    RadarChartComponent,
   ],
   imports: [
     BrowserModule,

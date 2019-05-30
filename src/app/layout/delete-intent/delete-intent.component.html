@@ -1,0 +1,36 @@
+<!-- <div class="container bg">
+    <div class="row">
+      <div class="col-md">
+        <form #myform="ngForm" (onSubmit)="delIntent(myform.value)">
+          <h1>Delete intent</h1><br><br>
+          <mat-form-field class="half-form">
+            <mat-select placeholder="" name="name" ngModel>
+              <mat-option *ngFor="let intent of intentlist" [value]="intent">
+                {{intent.displayName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <button type="submit" (click)="delIntent(myform.value)" mat-raised-button color="primary">Confirm</button><br><br>
+        </form>
+      </div>
+    </div>
+  </div> -->
+
+<div class="container bg">
+  <div class="row">
+    <div class="col-md">
+      <h1>Delete Intent</h1><br><br>
+      
+      <form #myform="ngForm" (onSubmit)="delIntent(myform.value)">
+        <div class="form-group half-form">
+            <select class="browser-default custom-select" name="name" ngModel>
+                <option selected *ngFor="let intent of intentlist" [value]="intent">{{intent.displayName}}</option>
+            </select>
+        </div>
+        <button class="btn btn-primary"  type="button" (click)="delIntent(intent)" color="primary">Confirm</button><br><br>
+    
+    </form>    
+    </div>
+  </div>
+</div>
