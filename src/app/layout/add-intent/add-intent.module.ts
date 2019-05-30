@@ -8,16 +8,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { PageHeaderModule } from '../../shared';
 
 @NgModule({
     imports: [
-        CommonModule, 
+        CommonModule,
         AddIntentRoutingModule,
         FormsModule,
         MatFormFieldModule,
         MatInputModule,
         ButtonsModule.forRoot(),
-        TypeaheadModule.forRoot()
+        TypeaheadModule.forRoot(),
+        PageHeaderModule
     ],
     declarations: [AddIntentComponent]
 })
