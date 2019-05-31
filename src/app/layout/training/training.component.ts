@@ -39,14 +39,14 @@ export class TrainingComponent implements OnInit {
     this.getintentList();
   }
 
-  isLogin(){
+  isLogin() {
     const token = document.cookie.split('=')[2];
-    if(token != null) {
+    if (token != null) {
       return false;
     }
     return true;
   }
-  
+
   getintentList() {
     this.myapi.getIntentList().subscribe((data: any) => {
       this.intents = data.intents;
@@ -57,13 +57,18 @@ export class TrainingComponent implements OnInit {
     });
   }
 
-  assignIntent(word,wordKey ,intentsID) {
+  assignIntent(word, wordKey, intentsID) {
     this.myapi.getDetailIntent(intentsID).subscribe(
       (data: any) => {
         console.log("GET Request is successful ", data);
         this.fullIntents = data;
         this.countfail(data.displayName)
         delete this.fullIntents.followupIntentInfo;
+
+        if (this.fullIntents.trainingPhrases == null) {
+          this.fullIntents.trainingPhrases = []
+        }
+
         this.fullIntents.trainingPhrases.push(
           {
             "type": "EXAMPLE",
@@ -74,6 +79,8 @@ export class TrainingComponent implements OnInit {
             ]
           }
         )
+
+
         this.myapi.patchIntent(intentsID, this.fullIntents).subscribe(
           data => {
             console.log("PATCH is successful ", data);
@@ -83,7 +90,7 @@ export class TrainingComponent implements OnInit {
             console.log("Error", error);
             //alert("ผิดพลาด " + error)
           }
-        )
+        ) 
 
       },
       error => {
@@ -95,11 +102,11 @@ export class TrainingComponent implements OnInit {
   }
 
   countfail(name) {
-    let form:any = {
+    let form: any = {
       'name': name
     };
     // let httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-    this.http.post('https://sut-line-bot.herokuapp.com/countfail', form ).subscribe(data => {
+    this.http.post('https://sut-line-bot.herokuapp.com/countfail', form).subscribe(data => {
       console.log('success');
     });
   }
