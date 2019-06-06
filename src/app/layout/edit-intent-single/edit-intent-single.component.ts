@@ -10,11 +10,12 @@ import { DialogflowService } from '../../shared/api/dialogflow.service';
 export class EditIntentSingleComponent implements OnInit {
 
   id;
-  detailIntent = {
+  detailIntent
+   = {
     displayName:"",
     messages: [
       {
-        text: {text:[]}
+        text: {text:[""]}
       }
     ],
     trainingPhrases: [
@@ -26,7 +27,7 @@ export class EditIntentSingleComponent implements OnInit {
         ]
       }
     ]
-  };
+  }; 
   constructor(private route: ActivatedRoute, private myapi: DialogflowService) { }
 
   ngOnInit() {
@@ -46,6 +47,30 @@ export class EditIntentSingleComponent implements OnInit {
       (data: any) => {
         console.log("GET Request is successful ", data);
         this.detailIntent = data;
+        if(this.detailIntent.trainingPhrases == null && this.detailIntent.messages == null){
+          console.log("all null");
+          
+          this.detailIntent.trainingPhrases = [
+            {
+              parts: [
+                {
+                  text: ""
+                }
+              ]
+            }
+          ]
+
+          this.detailIntent.messages = [
+            {
+              text: {text:[""]}
+            }
+          ]
+          
+
+        }
+        console.log(this.detailIntent);
+        
+        
       },
       error => {
         console.log("Error", error);
@@ -86,6 +111,31 @@ export class EditIntentSingleComponent implements OnInit {
       }
     ) 
     
+  }
+
+  addTraining(){
+    this.detailIntent.trainingPhrases.push(
+      {
+        parts: [
+          {
+            text: ""
+          }
+        ]
+      }
+    )
+  }
+  delTraining(index){
+    this.detailIntent.trainingPhrases.splice(index, 1);
+  }
+
+  addText(){
+    this.detailIntent.messages[0].text.text.push("")
+    console.log(this.detailIntent);
+    
+  }
+
+  delText(index){
+    this.detailIntent.messages[0].text.text.splice(index, 1);
   }
 
 }

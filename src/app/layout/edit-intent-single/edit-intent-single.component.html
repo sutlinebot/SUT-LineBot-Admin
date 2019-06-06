@@ -3,12 +3,25 @@
   <h2>Training phrases </h2>
   <div *ngFor="let item of detailIntent.trainingPhrases; let i = index; ">
     <input class="form-control" placeholder="Add user expression" [ngModel]="item.parts[0].text"
-      name="indent_training{{i}}"><br>
+      name="indent_training{{i}}">
+      <i class="fa fa-minus-square zoom" style="color:red;" (click)="delTraining(i)"></i><br>
   </div>
+  <i class="fa fa-plus-square fa-lg zoom" style="color:green;" (click)="addTraining()"></i>
   <h2>Responses </h2>
-  <div *ngFor="let item of detailIntent.messages[0].text.text ; let i = index;">
-    <input class="form-control" placeholder="Enter text response variant" [ngModel]="item"
-      name="indent_response{{i}}"><br>
+  <div>
+    <div class="card">
+      <div class="card-body">
+        <div *ngFor="let item of detailIntent.messages[0].text.text ; let i = index;">
+          <textarea class="form-control" placeholder="Enter text response variant" [ngModel]="item"
+            name="indent_response{{i}}"></textarea>
+            <i class="fa fa-minus-square zoom" style="color:red;" (click)="delText(i)"></i><br>
+        </div>
+        <i class="fa fa-plus-square fa-lg zoom" style="color:green;" (click)="addText()"></i>
+      </div>
+    </div>
   </div>
+
+
   <button type="submit" class="btn btn-success">Save</button>
+  
 </form>
