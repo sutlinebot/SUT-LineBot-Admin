@@ -101,6 +101,11 @@ export class TrainingComponent implements OnInit {
 
   }
 
+  deleteWord(word, wordKey){
+    console.log("delete - " +  word + ", " + wordKey);
+    this.questionsRef.remove(wordKey);
+  }
+
   countfail(name) {
     let form: any = {
       'name': name

@@ -14,8 +14,12 @@
         <li class="list-group-item">
           <div class="container">
             <div class="row">
+              <i class="fa fa-times-circle fa-lg zoom" style="color:red;" aria-hidden="true" (click)="deleteWord(question.value.question,question.key)"></i>
               <div class="col-sm">
                 {{ question.value.question }}
+              </div>
+              <div class="col-sm">
+                {{ question.value.date }} - {{ question.value.time }}
               </div>
               <div class="col-sm">
                 <div class="btn-group" dropdown container="body">
@@ -25,7 +29,8 @@
                   <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
                     aria-labelledby="button-basic">
                     <li role="menuitem" *ngFor="let intent of intents">
-                      <a class="dropdown-item" (click)="assignIntent(question.value.question,question.key,intent[1])">{{intent[0]}}</a>
+                      <a class="dropdown-item"
+                        (click)="assignIntent(question.value.question,question.key,intent[1])">{{intent[0]}}</a>
                     </li>
                   </ul>
                 </div>
