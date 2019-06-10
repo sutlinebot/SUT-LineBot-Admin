@@ -3,7 +3,7 @@
         <div class="col-md-4">
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
             <h1>SUT-Chatbot</h1>
-            <form role="form">
+            <!-- <form role="form">
                 <div class="form-content">
                     <div class="form-group">
                         <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="{{ 'Email' | translate }}">
@@ -16,13 +16,17 @@
                 <a class="btn rounded-btn" (click)="signInWithGoogle()">
                  <span class="fa fa-google"></span> Sign in with google
                 </a>
-                <!--
-                    &nbsp;
-                    <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()">{{ 'Log in' | translate }}</a>
-                    &nbsp;
-                    <a class="btn rounded-btn" [routerLink]="['/signup']">{{ 'Register' | translate }}</a>
-                -->    
-            </form>
+
+                &nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()">{{ 'Log in' | translate }}</a>
+                &nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/signup']">{{ 'Register' | translate }}</a>
+ 
+            </form> -->
+            <br><br><br>
+            <a class="btn rounded-btn" (click)="signInWithGoogle()">
+            <span class="fa fa-google"></span> Sign in with google
+            </a>
         </div>
     </div>
 </div>
