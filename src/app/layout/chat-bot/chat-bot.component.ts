@@ -21,13 +21,8 @@ export class ChatBotComponent implements OnInit {
     }
 
     sendMessage() {
-        console.log(this.formValue);
-        // console.log(data.queryResult.fulfillmentText);
-        this.chat.converse(this.formValue).subscribe((data: any) => {
-        const botMessage = new Message(data.queryResult.fulfillmentText, 'bot');
-        this.chat.update(botMessage);
-        });
+        this.chat.converse(this.formValue);
         this.formValue = '';
-    }
+      }
 
 }

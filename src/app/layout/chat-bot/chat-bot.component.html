@@ -1,3 +1,4 @@
+<!--
 <div class="container bg">
     <div class="row">
       <div class="col-md">
@@ -16,3 +17,64 @@
       </div>
     </div>
   </div>
+
+
+-->
+
+<app-page-header [heading]="'ChatBot'" [icon]="'fa fa-comments fa-fw'"></app-page-header>
+<div class="chat-panel card card-default">
+  <div class="card-header">
+      <i class="fa fa-comments fa-fw"></i>
+      Chat
+      <div class=" pull-right" ngbDropdown>
+          <button class="btn btn-secondary btn-sm" ngbDropdownToggle>
+              <span class="caret"></span>
+          </button>
+      </div>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="card-body">
+      <ul class="chat">
+        
+          <li *ngFor="let message of messages | async" [ngClass]="{ 'left clearfix': message.sentBy === 'bot',
+                                                                    'right clearfix':   message.sentBy === 'user' }">
+              <span  [ngClass]="{ 'chat-img pull-left': message.sentBy === 'bot',
+                                  'chat-img pull-right':   message.sentBy === 'user' }">
+                  <img src={{message.photoUrl}} height="55" width="55" alt="User Avatar" class="img-circle">
+              </span>
+              <div class="chat-body clearfix">
+                  <div class="header">
+
+                      <strong [ngClass]="{ 'pull-right text-muted': message.sentBy === 'bot',
+                                          'pull-right text-muted':   message.sentBy === 'user' }">
+                        {{message.name}}
+                      </strong>                      
+                      <small [ngClass]="{ 'pull-right text-muted': message.sentBy === 'bot',
+                                          'text-muted':   message.sentBy === 'user' }">
+                          <i class="fa fa-clock-o fa-fw"></i> {{message.time}}
+                      </small>
+                  </div>
+                  
+                  <p [ngClass]="{ 'pull-left text-muted': message.sentBy === 'bot',
+                                  'pull-right text-muted':   message.sentBy === 'user' }">
+                      {{message.content}}
+                  </p>
+              </div>
+          </li>
+
+         
+      </ul>
+  </div>
+  <!-- /.card-body -->
+  <div class="card-footer">
+      <div class="input-group">
+          <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." [(ngModel)]="formValue" (keyup.enter)="sendMessage()">
+          <span class="input-group-btn">
+              <button class="btn btn-warning btn-sm" id="btn-chat" (click)="sendMessage()">
+                  Send
+              </button>
+          </span>
+      </div>
+  </div>
+  <!-- /.card-footer -->
+</div>

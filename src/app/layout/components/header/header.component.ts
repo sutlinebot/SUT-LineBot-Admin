@@ -37,7 +37,6 @@ export class HeaderComponent implements OnInit {
             return actions.map(action => ({ key: action.key, value: action.payload.val() }));
           }).subscribe(items => {
             this.questions = items;
-            console.log(this.questions);
             this.alert = this.questions.length;
           });
     }

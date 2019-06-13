@@ -3,9 +3,11 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiAiClient } from 'api-ai-javascript/es6/ApiAiClient';
+import { Time } from '@angular/common';
 
 export class Message {
-  constructor(public content: string, public sentBy: string) {}
+  constructor(public content: string, public sentBy: string,public photoUrl: string,public time: string,public name: string) {}
 }
 
 @Injectable({
@@ -13,8 +15,8 @@ export class Message {
 })
 export class ChatService {
 
-  // readonly token = environment.dialogflow.angularBot;
-  // readonly client = new ApiAiClient({ accessToken: this.token });
+  readonly token = environment.dialogflow.angularBot;
+  readonly client = new ApiAiClient({ accessToken: this.token });
 
   conversation = new BehaviorSubject<Message[]>([]);
 
@@ -22,21 +24,19 @@ export class ChatService {
 
   // Sends and receives messages via DialogFlow
   converse(msg: string) {
-    const token = document.cookie.split('=')[3];
-    const httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + token});
-    const data = {
-      queryInput: {
-        text: {
-          languageCode: 'th',
-          text: msg
-        }
-      }
-    };
-    const userMessage = new Message(msg, 'user');
+    const today = new Date();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const userMessage = new Message(msg, 'user',localStorage.getItem('photoUrl'),time,localStorage.getItem('userName'));
     this.update(userMessage);
 
-    return this.http.post('https://dialogflow.googleapis.com/v2/projects/botframe-2d07e/agent/sessions/my_session_id:detectIntent'
-    , data, {headers: httpHeaders});
+    return this.client.textRequest(msg)
+               .then(res => {
+                  const today = new Date();
+                  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                  const speech = res.result.fulfillment.speech;
+                  const botMessage = new Message(speech, 'bot','https://3.bp.blogspot.com/-vO7C5BPCaCQ/WigyjG6Q8lI/AAAAAAAAfyQ/1tobZMMwZ2YEI0zx5De7kD31znbUAth0gCLcBGAs/s200/TOMI_avatar_full.png',time,'SUT-ChatBot');
+                  this.update(botMessage);
+               });
   }
   // Adds message to source
   update(msg: Message) {
