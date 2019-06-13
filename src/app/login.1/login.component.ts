@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
       this.user = userData;
       console.log(this.user);
       document.cookie = 'token=' + userData.token;
-      console.log(document.cookie);
-      this.onLoggedin(this.user.name);
+      // console.log(document.cookie);
+      this.onLoggedin(this.user.name,this.user.photoUrl);
       this.router.navigate(['/dashboard']);
     });
   }
@@ -38,8 +38,9 @@ export class LoginComponent implements OnInit {
   }
 
 
-  onLoggedin(userName: string) {
+  onLoggedin(userName: string,photoUrl: string) {
     localStorage.setItem('isLoggedin', 'true');
     localStorage.setItem('userName', userName);
+    localStorage.setItem('photoUrl', photoUrl);
   }
 }

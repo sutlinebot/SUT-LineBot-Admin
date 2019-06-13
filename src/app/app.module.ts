@@ -59,7 +59,6 @@ import { AddIntentComponent } from './add-intent/add-intent.component';
 import { DelIntentComponent } from './del-intent/del-intent.component';
 import { HeaderComponent } from './header/header.component';
 import { TrainingComponent } from './training/training.component';
-import { ChatModule } from './chat/chat.module';
 import { IntentComponent } from './intent/intent.component';
 import { EditIntentComponent } from './edit-intent/edit-intent.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
@@ -144,7 +143,6 @@ export function provideConfig() {
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
-    ChatModule,
     ChartsModule,
     CommonModule,
     BrowserModule,

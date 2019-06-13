@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { AddIntentComponent } from './add-intent/add-intent.component';
 import { DelIntentComponent } from './del-intent/del-intent.component';
 import { TrainingComponent } from './training/training.component';
-import { ChatDialogComponent } from './chat/chat-dialog/chat-dialog.component';
 import { IntentComponent } from './intent/intent.component';
 import { EditIntentComponent } from './edit-intent/edit-intent.component';
 import { EditIntentSingleComponent } from './edit-intent-single/edit-intent-single.component';
@@ -28,7 +27,6 @@ const routes: Routes = [
   { path: 'add-intent', component: AddIntentComponent },
   { path: 'del-intent', component: DelIntentComponent },
   { path: 'training', component: TrainingComponent },
-  { path: 'chatbot', component: ChatDialogComponent },
   { path: 'intent', component: IntentComponent },
   { path: 'edit', component: EditIntentComponent },
   { path: 'bar-chart', component: BarChartComponent },
