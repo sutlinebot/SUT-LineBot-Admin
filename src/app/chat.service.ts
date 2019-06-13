@@ -31,7 +31,6 @@ export class ChatService {
 
     return this.client.textRequest(msg)
                .then(res => {
-                 console.log(res)
                   const today = new Date();
                   const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                   const speech = res.result.fulfillment.speech;
