@@ -31,10 +31,11 @@ export class ChatService {
 
     return this.client.textRequest(msg)
                .then(res => {
+                 console.log(res)
                   const today = new Date();
                   const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                   const speech = res.result.fulfillment.speech;
-                  const botMessage = new Message(speech, 'bot','https://3.bp.blogspot.com/-vO7C5BPCaCQ/WigyjG6Q8lI/AAAAAAAAfyQ/1tobZMMwZ2YEI0zx5De7kD31znbUAth0gCLcBGAs/s200/TOMI_avatar_full.png',time,'SUT-ChatBot');
+                  const botMessage = new Message(speech, 'bot','https://scontent.fbkk5-3.fna.fbcdn.net/v/t1.0-9/57388262_1990174661112235_3199573420874399744_n.jpg?_nc_cat=105&_nc_oc=AQlNovsVIJKw_SY2kHhcDyW0vKk6y7qJbqtbR7FUTcAI1KAa9pgjml9EPFhlEpWhRX-k0gpxeet2Gbwcsx6WVFxn&_nc_ht=scontent.fbkk5-3.fna&oh=173ab731a81251bed69c7787b6f1aec8&oe=5D8BCD2C',time,'SUT-ChatBot');
                   this.update(botMessage);
                });
   }

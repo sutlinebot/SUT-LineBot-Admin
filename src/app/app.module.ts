@@ -70,6 +70,7 @@ import { RadarChartComponent } from './chart/radar-chart/radar-chart.component';
 import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './shared';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
 
 
 const CONFIG = new AuthServiceConfig([
@@ -149,6 +150,7 @@ export function provideConfig() {
     BrowserAnimationsModule,
     HttpClientModule,
     LanguageTranslationModule,
+    NgxUiLoaderModule,
   ],
   providers: [
     AuthGuard,

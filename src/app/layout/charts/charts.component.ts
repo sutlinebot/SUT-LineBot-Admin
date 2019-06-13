@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Label, Color } from 'ng2-charts';
+import { NgxUiLoaderService } from 'ngx-ui-loader'; // Import NgxUiLoaderService
 
 @Component({
     selector: 'app-charts',
@@ -10,7 +11,7 @@ import { Label, Color } from 'ng2-charts';
     animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
-    // bar
+      // bar
     public barChartOptions = {
         scaleShowVerticalLines: false,
         responsive: true
@@ -29,7 +30,7 @@ export class ChartsComponent implements OnInit {
       failrate = 0;
       successrate = 0;
 
-      constructor(private http: HttpClient) { }
+      constructor(private http: HttpClient,private ngxService: NgxUiLoaderService) { }
 
     // Doughnut
     public successChartData = Array.from(Array(10).keys());
@@ -96,9 +97,11 @@ export class ChartsComponent implements OnInit {
         this.polarAreaLegend = true;
         this.lineChartLegend = true;
         this.lineChartType = 'line';
-        this.loaddata();
+        this.loaddata(); 
     }
     loaddata() {
+      this.ngxService.start();
+      setTimeout(() => {
         this.http.get('https://sut-line-bot.herokuapp.com/getcount').subscribe((data: any) => {
           this.Labels = data.Labels;
           this.chartData[0].data = data.success;
@@ -118,6 +121,10 @@ export class ChartsComponent implements OnInit {
           this.countData[0].data = sumcount;
           this.percentSuccess = percentSuccessTemp;
           this.pieColors[0].backgroundColor = color;
+          this.ngxService.stop();
+        },err => {
+          this.ngxService.stop();
         });
+      }, 5000);
       }
 }

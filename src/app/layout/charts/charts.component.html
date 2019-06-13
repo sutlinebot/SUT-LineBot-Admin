@@ -11,7 +11,7 @@
                         <canvas baseChart [datasets]="chartData" [labels]="Labels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
                         </canvas>
                     </div>
-
+                    <ngx-ui-loader></ngx-ui-loader>
                 </div>
                 <div class="card-footer">
                     
@@ -20,7 +20,7 @@
         </div>
         <div class="col col-sm-6">
             <div class="card mb-3">
-                <div class="card-header">
+                <div class="card-header">   
                     อัตราที่ intent ตอบถูกคิดเป็นเปอร์เซ็นต์
                 </div>
                 <div class="card-body">
