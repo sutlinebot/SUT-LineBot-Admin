@@ -34,7 +34,7 @@ export class ChatService {
                   const today = new Date();
                   const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                   const speech = res.result.fulfillment.speech;
-                  const botMessage = new Message(speech, 'bot','https://scontent.fbkk5-3.fna.fbcdn.net/v/t1.0-9/57388262_1990174661112235_3199573420874399744_n.jpg?_nc_cat=105&_nc_oc=AQlNovsVIJKw_SY2kHhcDyW0vKk6y7qJbqtbR7FUTcAI1KAa9pgjml9EPFhlEpWhRX-k0gpxeet2Gbwcsx6WVFxn&_nc_ht=scontent.fbkk5-3.fna&oh=173ab731a81251bed69c7787b6f1aec8&oe=5D8BCD2C',time,'SUT-ChatBot');
+                  const botMessage = new Message(speech, 'bot','https://upload.wikimedia.org/wikipedia/th/thumb/3/33/Sut_logo_Thai.svg/180px-Sut_logo_Thai.svg.png',time,'SUT-ChatBot');
                   this.update(botMessage);
                });
   }
