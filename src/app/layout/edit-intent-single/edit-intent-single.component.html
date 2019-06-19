@@ -1,36 +1,71 @@
 <div class="container bg">
-    <form #item="ngForm" (ngSubmit)="onClickSubmit(item.value)">
-        <div class="row">
-            <div class="container col-6">
-                <h2>Intent</h2>
-                <input class="form-control" name="indent_name" [ngModel]="detailIntent.displayName" placeholder="Indent Name"><br>
-                <h2>Training phrases </h2>
-                <div *ngFor="let item of detailIntent.trainingPhrases; let i = index; ">
-                  <input class="form-control" placeholder="Add user expression" [ngModel]="item.parts[0].text"
-                    name="indent_training{{i}}">
-                    <i class="fa fa-minus-square zoom" style="color:red;" (click)="delTraining(i)"></i><br>
-                </div>
-                <i class="fa fa-plus-square fa-lg zoom" style="color:green;" (click)="addTraining()"></i>
-            </div>
-            
-            <div class="container col-6">
-                <h2>Responses </h2>
-                <div>
-                  <div class="card">
-                    <div class="card-body">
-                      <div *ngFor="let item of detailIntent.messages[0].text.text ; let i = index;">
-                        <textarea class="form-control" placeholder="Enter text response variant" [ngModel]="item"
-                          name="indent_response{{i}}"></textarea>
-                          <i class="fa fa-minus-square zoom" style="color:red;" (click)="delText(i)"></i><br>
-                      </div>
-                      <i class="fa fa-plus-square fa-lg zoom" style="color:green;" (click)="addText()"></i>
-                    </div>
+  <form #item="ngForm" (ngSubmit)="onClickSubmit(item.value)">
+    <div class="row">
+      <div class="container col-6">
+        <h2>Intent</h2>
+        <input class="form-control" name="indent_name" [ngModel]="detailIntent?.displayName"
+          placeholder="Indent Name"><br>
+        <h2>Training phrases </h2>
+        <div *ngFor="let item of detailIntent?.trainingPhrases; let i = index; ">
+          <input class="form-control" placeholder="Add user expression" [ngModel]="item.parts[0].text"
+            name="indent_training{{i}}">
+          <i class="fa fa-minus-square zoom" style="color:red;" (click)="delTraining(i)"></i><br>
+        </div>
+        <i class="fa fa-plus-square fa-lg zoom" style="color:green;" (click)="addTraining()"></i>
+      </div>
+
+      <div class="container col-6">
+        <h2>Responses </h2>
+        <div *ngFor="let res of detailIntent?.messages ; let i1 = index;">
+
+
+          <div>
+            <div class="card ">
+              
+                <div *ngIf="selectType(res) == 'image'">
+                  <img [src]="res?.image?.imageUri" class="card-img-top">
+                  <h5 class="card-header">  <i class="fa fa-trash zoom" style="color:red;" (click)="delRes(i1)" aria-hidden="true"></i> Image response</h5>
+                  <div>
+                    <input class="form-control" placeholder="Enter image URI" [ngModel]="res?.image?.imageUri"
+                      name="indent_response_image{{i1}}">
                   </div>
                 </div>
-              </div>
-        </div>
+                <div *ngIf="selectType(res) == 'text'">
+                  <h5 class="card-header">  <i class="fa fa-trash zoom" style="color:red;" (click)="delRes(i1)" aria-hidden="true"></i> Text response</h5>
+                  <div *ngFor="let item of  res.text?.text ; let i2 = index;">
+                    <input class="form-control" placeholder="Enter text response variant" [ngModel]="item"
+                      name="indent_response{{i1}}_{{i2}}">
+                    <i class="fa fa-minus-square zoom" style="color:red;" (click)="delText(i1,i2)"></i><br>
+                  </div>
+                  <i class="fa fa-plus-square fa-lg zoom" style="color:green;" (click)="addText(i1)"></i>
+                </div>
+                <div *ngIf="selectType(res) == 'payload'">
+                  <h5 class="card-header">  <i class="fa fa-trash zoom" style="color:red;" (click)="delRes(i1)" aria-hidden="true"></i> Custom payload</h5>
+                    <textarea class="form-control" [ngModel]="res?.payload"
+                      name="indent_response_payload{{i1}}"></textarea>
+                </div>
+            </div>
+          </div>
           <br>
-        <button type="submit" class="btn btn-success">Save</button>
-        
-      </form>
+        </div>
+
+        <div class="btn-group" dropdown dropup="true">
+          <button id="button-dropup" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+            aria-controls="dropdown-dropup">
+            Add response <span class="caret"></span>
+          </button>
+          <ul id="dropdown-dropup" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-dropup">
+            <li role="menuitem"><a class="dropdown-item" (click)="addRes('text')">Text</a></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="addRes('img')">Image</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="addRes('custom')">Custom</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Save</button>
+
+  </form>
 </div>
