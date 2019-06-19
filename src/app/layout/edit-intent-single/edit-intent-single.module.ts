@@ -9,9 +9,11 @@ import { MatFormFieldModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
     imports: [
+        BsDropdownModule.forRoot(),
         FormsModule,
         MatFormFieldModule,
         CommonModule,

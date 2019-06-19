@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md center text-center">
-      <ul *ngFor="let item of intents">
-        <li>
+      <ul *ngFor="let item of intents" class="list-group">
+        <li class="list-group-item list-group-item-action">
           <a  (click)="editIntent(item)" >{{item[0]}}</a></li>
       </ul>
     </div>

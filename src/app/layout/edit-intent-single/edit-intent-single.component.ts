@@ -2,32 +2,42 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DialogflowService } from '../../shared/api/dialogflow.service';
 
+interface Intent {
+  displayName: string;
+  messages: [
+    {
+      text?: {
+        text: [""]
+      }
+      image?: {
+        imageUri: any;
+      }
+      payload?: any;
+    }
+  ]
+  trainingPhrases: [
+    {
+      parts: [
+        {
+          text: ""
+        }
+      ]
+    }
+  ];
+}
+
 @Component({
   selector: 'app-edit-intent-single',
   templateUrl: './edit-intent-single.component.html',
   styleUrls: ['./edit-intent-single.component.css']
 })
+
+
+
 export class EditIntentSingleComponent implements OnInit {
 
   id;
-  detailIntent
-   = {
-    displayName:"",
-    messages: [
-      {
-        text: {text:[""]}
-      }
-    ],
-    trainingPhrases: [
-      {
-        parts: [
-          {
-            text: ""
-          }
-        ]
-      }
-    ]
-  }; 
+  detailIntent: Intent;
   constructor(private route: ActivatedRoute, private myapi: DialogflowService) { }
 
   ngOnInit() {
@@ -46,10 +56,14 @@ export class EditIntentSingleComponent implements OnInit {
     this.myapi.getDetailIntent(this.id[1]).subscribe(
       (data: any) => {
         console.log("GET Request is successful ", data);
+
         this.detailIntent = data;
-        if(this.detailIntent.trainingPhrases == null && this.detailIntent.messages == null){
+
+        this.pettyJson()
+
+        if (this.detailIntent.trainingPhrases == null && this.detailIntent.messages == null) {
           console.log("all null");
-          
+
           this.detailIntent.trainingPhrases = [
             {
               parts: [
@@ -62,15 +76,17 @@ export class EditIntentSingleComponent implements OnInit {
 
           this.detailIntent.messages = [
             {
-              text: {text:[""]}
+              text: { text: [""] }
             }
           ]
-          
+
 
         }
+
+
         console.log(this.detailIntent);
-        
-        
+
+
       },
       error => {
         console.log("Error", error);
@@ -83,37 +99,54 @@ export class EditIntentSingleComponent implements OnInit {
     console.log(body);
     this.detailIntent.displayName = body.indent_name;
     console.log();
-    
+
     this.detailIntent.trainingPhrases.map(
       (cur, index, arr) => {
-        cur.parts = [{text: eval('body.indent_training'+index)}]
-    })
+        cur.parts = [
+          { text: eval('body.indent_training' + index) }
+        ]
+      })
 
-    this.detailIntent.messages[0].text.text.map(
+
+    this.detailIntent.messages.map(
       (cur, index, arr) => {
-        arr[index] = eval('body.indent_response'+index)
-    })
-    
-    
-    
+        if (cur.image != null)
+          cur.image.imageUri = eval('body.indent_response_image' + index)
+
+        if (cur.text != null)
+          cur.text.text.map(
+            (_cur, index2, arr2) => {
+              arr2[index2] = eval('body.indent_response' + index + '_' + index2)
+            }
+          )
+
+        if (cur.payload != null) {
+          cur.payload = JSON.parse(eval('body.indent_response_payload' + index));
+        }
+
+      })
+
     console.log(this.detailIntent);
 
 
-      this.myapi.patchIntent(this.id[1], this.detailIntent).subscribe(
+    this.myapi.patchIntent(this.id[1], this.detailIntent).subscribe(
       data => {
+        this.pettyJson()
         alert("สำเร็จ");
         console.log("PATCH is successful ", data);
+
       },
       error => {
         console.log("Error", error);
         alert("ไม่สำเร็จ");
+        this.pettyJson()
         //alert("ผิดพลาด " + error)
       }
-    ) 
-    
+    )
+
   }
 
-  addTraining(){
+  addTraining() {
     this.detailIntent.trainingPhrases.push(
       {
         parts: [
@@ -124,18 +157,73 @@ export class EditIntentSingleComponent implements OnInit {
       }
     )
   }
-  delTraining(index){
+  delTraining(index) {
     this.detailIntent.trainingPhrases.splice(index, 1);
   }
 
-  addText(){
-    this.detailIntent.messages[0].text.text.push("")
+  addText(index) {
+    this.detailIntent.messages[index].text.text.push("")
     console.log(this.detailIntent);
-    
+
   }
 
-  delText(index){
-    this.detailIntent.messages[0].text.text.splice(index, 1);
+  delText(index, text) {
+    this.detailIntent.messages[index].text.text.splice(text, 1);
+  }
+
+
+
+  selectType(res) {
+    return Object.getOwnPropertyNames(res)[0]
+  }
+
+  addRes(type) {
+    console.log(type);
+    if (type == 'text') {
+      this.detailIntent.messages.push(
+        {
+          text: {
+            text: [""]
+          }
+        }
+      )
+    }
+
+    else if (type == 'img') {
+      this.detailIntent.messages.push(
+        {
+          image: {
+            imageUri: ""
+          }
+        }
+      )
+    }
+
+    else if (type == 'custom') {
+      this.detailIntent.messages.push(
+        {
+          payload: ""
+        }
+      )
+    }
+  }
+
+  delRes(index) {
+    console.log(index);
+    this.detailIntent.messages.splice(index, 1);
+  }
+
+  pettyJson() {
+    this.detailIntent.messages.map(
+      (cur, index, arr) => {
+        if (cur.payload != null) {
+          console.log(arr[index].payload);
+          arr[index].payload = JSON.stringify(arr[index].payload, undefined, 4);
+          console.log(arr[index].payload);
+
+        }
+      }
+    )
   }
 
 }
