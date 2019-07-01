@@ -1,0 +1,29 @@
+<input type="file" (change)="uploadFile($event)" />
+<div>{{ uploadPercent | async }} </div>
+
+<div class="container">
+    <div class="row">
+        <ul>
+            <li *ngFor="let item of items | async">
+                <img [src]="item.url" height="200" width="200" class="img-thumbnail" (click)="openModal(template)">
+
+                <ng-template #template>
+
+                    <div class="modal-header">
+                        <h4 class="modal-title pull-left">Image</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img [src]="item.url" class="img-fluid" alt="Responsive image">
+                    </div>
+                    <input type="text" [value]="item.url" #userinput>
+                    <button type="button" class="btn btn-primary" (click)="copy(userinput)">
+                        Copy
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="delImg(item)">
+                        Delete
+                    </button>
+                </ng-template>
+            </li>
+        </ul>
+    </div>
+</div>
