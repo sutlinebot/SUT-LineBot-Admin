@@ -24,6 +24,7 @@ const routes: Routes = [
             { path: 'edit-intent', loadChildren: './edit-intent/edit-intent.module#EditIntentModule' },
             { path: 'edit-single', loadChildren: './edit-intent-single/edit-intent-single.module#EditIntentSingleModule' },
             { path: 'delete-intent', loadChildren: './delete-intent/delete-intent.module#DeleteIntentModule' },
+            { path: 'photos', loadChildren: './photos/photos.module#PhotosModule' },
         ]
     }
 ];
