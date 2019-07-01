@@ -11,7 +11,7 @@ export class DialogflowService {
   // public httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + this.token.split('=')[2]})
 
   constructor(private http: HttpClient) { }
-  token = document.cookie.split('=')[2];
+  token = document.cookie.split('=')[3];
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + this.token});
   getIntentList() {
     // const token = document.cookie.split('=')[3];
