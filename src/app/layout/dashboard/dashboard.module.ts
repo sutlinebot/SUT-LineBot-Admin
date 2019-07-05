@@ -10,6 +10,8 @@ import {
     ChatComponent
 } from './components';
 import { StatModule } from '../../shared';
+import { NgxUiLoaderModule, NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
+import { ChartsModule as Ng2Charts } from 'ng2-charts';
 
 @NgModule({
     imports: [
@@ -17,7 +19,9 @@ import { StatModule } from '../../shared';
         NgbCarouselModule,
         NgbAlertModule,
         DashboardRoutingModule,
-        StatModule
+        StatModule,
+        NgxUiLoaderModule,
+        Ng2Charts
     ],
     declarations: [
         DashboardComponent,

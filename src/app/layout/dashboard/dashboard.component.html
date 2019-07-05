@@ -1,16 +1,16 @@
 <div [@routerTransition]>
     <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
     <div class="row">
-        <div class="col-md-12">
-            <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let slider of sliders">
-                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
-                    <div class="carousel-caption">
-                        <h3>{{slider.label}}</h3>
-                        <p>{{slider.text}}</p>
-                    </div>
-                </ng-template>
-            </ngb-carousel>
+        <div class="col-md-8">
+            <div class="barchart" >
+                    <canvas baseChart [datasets]="chartData" [labels]="Labels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                    <ngx-ui-loader></ngx-ui-loader>
+            </div>
+        </div>
+        <div class="col-md-4">
+                <h1>ตอบถูก: {{successrate}}%</h1>
+                <h1>ตอบผิด: {{failrate}}%</h1>
         </div>
     </div>
     <hr>
@@ -19,7 +19,7 @@
             <app-stat [bgClass]="'primary'" [icon]="'fa fa-android'" routerLink="/add-intent" [label]="'Intent'" ></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-graduation-cap'" routerLink="/training" [label]="'Training'" ></app-stat>
+            <app-stat [bgClass]="'warning'" [icon]="'fa-graduation-cap'" routerLink="/training"  [label]="'Training'"></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
             <app-stat [bgClass]="'success'" [icon]="'fa-commenting'"  routerLink="/chat" [label]="'ChatBot'" ></app-stat>

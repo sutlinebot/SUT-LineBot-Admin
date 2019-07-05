@@ -13,7 +13,7 @@ export const environment = {
     messagingSenderId: '425053466223'
   },
   dialogflow: {
-    angularBot: '6db9377e896a44deae927f260a18868e'
+    angularBot: 'fbe9cc3d1b98431baa93c3f0c8f8241c'
   }
 };
 
