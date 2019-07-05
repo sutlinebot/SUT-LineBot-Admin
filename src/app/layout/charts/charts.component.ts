@@ -125,6 +125,6 @@ export class ChartsComponent implements OnInit {
         },err => {
           this.ngxService.stop();
         });
-      }, 5000);
+      }, 500);
       }
 }

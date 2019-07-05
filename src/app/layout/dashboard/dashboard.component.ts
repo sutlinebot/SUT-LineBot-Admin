@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { NgxUiLoaderService } from 'ngx-ui-loader'; // Import NgxUiLoaderService
+import { Label, Color } from 'ng2-charts';
+import { AngularFireDatabase, AngularFireList, snapshotChanges } from '@angular/fire/database';
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -8,54 +11,58 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class DashboardComponent implements OnInit {
-    public alerts: Array<any> = [];
-    public sliders: Array<any> = [];
 
-    constructor() {
-        this.sliders.push(
-            {
-                imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
-                text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-            },
-            {
-                imagePath: 'assets/images/slider2.jpg',
-                label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-                imagePath: 'assets/images/slider3.jpg',
-                label: 'Third slide label',
-                text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-            }
-        );
+    public barChartOptions = {
+        scaleShowVerticalLines: false,
+        responsive: true
+      };
+      public Labels = Array.from(Array(10).keys());
+      public barChartType = 'bar';
+      public barChartLegend = true;
+      public barChartColors: Color[] = [
+        { backgroundColor:  'skyblue', borderColor: 'dodgerblue',  borderWidth: 2},
+        { backgroundColor: '#F08080',  borderColor: 'firebrick',  borderWidth: 2},
+      ];
+      public chartData = [
+        {data: Array.from(Array(10).keys()), label: 'success'},
+        {data: Array.from(Array(10).keys()), label: 'fail'},
+      ];
+      failrate = 0;
+      successrate = 0;
+      questionsRef: AngularFireList<any>;
+      questions: any[];
+      alert;
 
-        this.alerts.push(
-            {
-                id: 1,
-                type: 'success',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'warning',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            }
-        );
+    constructor(private http: HttpClient,private ngxService: NgxUiLoaderService,public db: AngularFireDatabase,) {
+        this.questionsRef = db.list('question');
     }
 
-    ngOnInit() {}
-
-    public closeAlert(alert: any) {
-        const index: number = this.alerts.indexOf(alert);
-        this.alerts.splice(index, 1);
+    ngOnInit() {
+        this.loaddata();
+        this.questionsRef.snapshotChanges().map(actions => {
+            return actions.map(action => ({ key: action.key, value: action.payload.val() }));
+          }).subscribe(items => {
+            this.questions = items;
+            this.alert = this.questions.length;
+          });
     }
+
+    loaddata() {
+        this.ngxService.start();
+        setTimeout(() => {
+          this.http.get('https://sut-line-bot.herokuapp.com/getcount').subscribe((data: any) => {
+            this.Labels = data.Labels;
+            this.chartData[0].data = data.success;
+            this.chartData[1].data = data.fail;
+            this.failrate = Number(((data.sumfail / (data.sumfail + data.sumsuccess)) * 100).toFixed(2));
+            this.successrate = Number(((data.sumsuccess / (data.sumfail + data.sumsuccess)) * 100).toFixed(2));
+            const sumcount = []; // fail + success
+            const percentSuccessTemp = []; //
+            const color = [];
+            this.ngxService.stop();
+          },err => {
+            this.ngxService.stop();
+          });
+        }, 500);
+        }
 }

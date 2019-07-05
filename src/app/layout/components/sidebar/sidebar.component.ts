@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
-
+    public userName: string;
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
     constructor(private translate: TranslateService, public router: Router) {
@@ -28,6 +28,7 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userName = localStorage.getItem('userName');
         this.isActive = false;
         this.collapsed = false;
         this.showMenu = '';
